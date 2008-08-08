@@ -20,7 +20,6 @@ module ModuleOne
 end
 module ModuleTwo
   
-  
   def method_02; end
 
   def self.extended( receiver )
@@ -91,15 +90,11 @@ class Russ
   end
 end
 
-
 class Russ
   def self.inherited( subclass )
     class << self; def method_21; end; end
   end
 end
-
-class JohnDoe < Russ; end
-
 
 class Russ
   def self.singleton_method_added( method )
