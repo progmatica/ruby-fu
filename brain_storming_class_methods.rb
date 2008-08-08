@@ -2,6 +2,14 @@
 # be gentle please
 # :)
 
+class Object
+  def self.inherited( subclass )
+    class << subclass
+      def method_20; end
+    end
+  end
+end
+
 module ModuleOne
   module ClassMethods
     def method_01; end
@@ -10,9 +18,9 @@ module ModuleOne
     receiver.extend ClassMethods
   end
 end
-
 module ModuleTwo
-
+  
+  
   def method_02; end
 
   def self.extended( receiver )
@@ -83,13 +91,6 @@ class Russ
   end
 end
 
-class Object
-  def self.inherited( subclass )
-    class << subclass
-      def method_20; end
-    end
-  end
-end
 
 class Russ
   def self.inherited( subclass )
@@ -99,7 +100,23 @@ end
 
 class JohnDoe < Russ; end
 
-puts Russ.superclass
+
+class Russ
+  def self.singleton_method_added( method )
+    if method == :method_23
+      class << self; def method_22; end; end
+    end
+  end
+end
+
+Russ.singleton.__send__( :define_method, :method_23 ) { }
+
+def ( Object.module_eval("::Russ", __FILE__, __LINE__) ).method_24
+end
+
+def Object.method_25
+end
+
 puts '~~~~~~~~~~~~~~~~~'
 puts Russ.singleton_methods.sort
 puts '~~~~~~~~~~~~~~~~~'
