@@ -74,8 +74,6 @@ Russ.singleton.send(:define_method, :method_17) { }
 
 Russ.singleton.class_eval { def method_18; end }
 
-Russ.singleton.put( lambda{ def method_19; end } )
-
 puts '~~~~~~~~~~~~~~~~~'
 puts Russ.singleton_methods.sort
 puts '~~~~~~~~~~~~~~~~~'
