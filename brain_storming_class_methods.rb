@@ -116,7 +116,6 @@ a_str = "def self.method_26; end"
 a_binding = Russ.send(:binding)
 eval(a_str,a_binding)
 
-
 puts '~~~~~~~~~~~~~~~~~'
 puts Russ.singleton_methods.sort
 puts '~~~~~~~~~~~~~~~~~'
