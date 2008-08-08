@@ -12,10 +12,13 @@ module ModuleOne
 end
 
 module ModuleTwo
+
   def method_02; end
-  def self.extended(receiver)
+
+  def self.extended( receiver )
     def method_03; end
   end
+
 end
 
 class Russ
@@ -48,7 +51,7 @@ class Russ
     class << self; self; end
   end
 
-  singleton.send(:define_method, :method_10) { }
+  singleton.send( :define_method, :method_10 ) { }
 
   singleton.class_eval { def method_11; end }
   
@@ -70,9 +73,23 @@ class << Russ
   def method_16; end
 end
 
-Russ.singleton.send(:define_method, :method_17) { }
+Russ.singleton.send( :define_method, :method_17 ) { }
 
 Russ.singleton.class_eval { def method_18; end }
+
+class Russ
+  def self.singleton_methods
+    [ "method_19" ] + super
+  end
+end
+
+class Russ
+  def self.inherited( subclass )
+    class << self; def method_20; end; end
+  end
+end
+
+class JohnDoe < Russ; end
 
 puts '~~~~~~~~~~~~~~~~~'
 puts Russ.singleton_methods.sort
