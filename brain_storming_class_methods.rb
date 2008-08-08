@@ -83,14 +83,23 @@ class Russ
   end
 end
 
+class Object
+  def self.inherited( subclass )
+    class << subclass
+      def method_20; end
+    end
+  end
+end
+
 class Russ
   def self.inherited( subclass )
-    class << self; def method_20; end; end
+    class << self; def method_21; end; end
   end
 end
 
 class JohnDoe < Russ; end
 
+puts Russ.superclass
 puts '~~~~~~~~~~~~~~~~~'
 puts Russ.singleton_methods.sort
 puts '~~~~~~~~~~~~~~~~~'
